@@ -23,10 +23,7 @@ header {
   text-align: center;
   border-bottom: 2px solid var(--beige);
 }
-header img {
-  height: 64px; width: auto;
-  display: block; margin: 0 auto 14px;
-}
+header img { height: 64px; width: auto; display: block; margin: 0 auto 14px; }
 header h1 {
   font-family: 'Assistant', sans-serif; font-weight: 700;
   font-size: 13px; letter-spacing: 4px; text-transform: uppercase;
@@ -80,32 +77,58 @@ main { max-width: 680px; margin: 0 auto; padding: 40px 24px 80px; }
 .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--dark-brown); cursor: pointer; }
 .checkbox-item span { font-family: 'Assistant', sans-serif; font-size: 14px; color: var(--dark-brown); }
 
-/* FILE UPLOAD */
-.upload-grid { display: flex; flex-direction: column; gap: 14px; }
-.upload-item { }
-.upload-item-label {
-  font-family: 'Assistant', sans-serif; font-weight: 700;
-  font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
-  color: var(--brown); display: block; margin-bottom: 7px;
-}
-.upload-box {
-  border: 1.5px dashed var(--taupe);
+/* IMAGES NOTE */
+.images-note {
   background: var(--white);
-  padding: 16px 20px;
-  display: flex; align-items: center; gap: 14px;
-  cursor: pointer; transition: background 0.2s ease;
-  position: relative;
+  border: 1px solid var(--beige);
+  border-right: 3px solid var(--taupe);
+  padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 12px;
 }
-.upload-box:hover { background: var(--beige); }
-.upload-box input[type="file"] {
-  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+.images-note p {
+  font-family: 'Assistant', sans-serif; font-weight: 400;
+  font-size: 14px; color: #666; margin-bottom: 4px; line-height: 1.7;
 }
-.upload-icon { font-size: 20px; flex-shrink: 0; }
-.upload-text { font-family: 'Assistant', sans-serif; font-weight: 400; font-size: 13px; color: #999; }
-.upload-text strong { display: block; font-weight: 600; color: var(--brown); font-size: 13px; }
-.upload-preview { display: none; margin-top: 8px; }
-.upload-preview img { max-height: 80px; border: 1px solid var(--beige); }
-.upload-preview span { font-size: 12px; color: #999; display: block; margin-top: 4px; }
+.images-note-item {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Assistant', sans-serif; font-weight: 600;
+  font-size: 14px; color: var(--dark-brown);
+}
+.images-note-item::before { content: "✦"; color: var(--taupe); font-size: 9px; flex-shrink: 0; }
+
+/* SUBMIT */
+.submit-area { margin-top: 48px; }
+.btn-submit {
+  width: 100%; padding: 18px;
+  background: var(--dark-brown); color: var(--white);
+  border: none; cursor: pointer;
+  font-family: 'Assistant', sans-serif; font-weight: 700;
+  font-size: 16px; letter-spacing: 2px;
+  transition: background 0.3s ease; margin-bottom: 24px;
+}
+.btn-submit:hover { background: var(--brown); }
+
+.after-submit {
+  background: var(--white);
+  border: 1px solid var(--beige);
+  border-right: 3px solid var(--taupe);
+  padding: 20px 24px;
+}
+.after-submit h3 {
+  font-family: 'Rubik', sans-serif; font-weight: 700;
+  font-size: 15px; color: var(--dark-brown); margin-bottom: 12px;
+}
+.after-submit p {
+  font-family: 'Assistant', sans-serif; font-weight: 400;
+  font-size: 14px; color: #666; line-height: 1.8; margin-bottom: 14px;
+}
+.after-submit ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.after-submit ul li {
+  font-family: 'Assistant', sans-serif; font-weight: 400;
+  font-size: 14px; color: var(--dark-brown);
+  display: flex; align-items: center; gap: 10px;
+}
+.after-submit ul li::before { content: "✦"; color: var(--taupe); font-size: 9px; flex-shrink: 0; }
 
 footer {
   background: var(--dark-brown); padding: 28px 24px; text-align: center;
@@ -126,23 +149,23 @@ footer a { color: var(--taupe); text-decoration: none; }
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>פרטי העסק</div>
-    <div class="field"><label>שם העסק</label><input type="text"></div>
-    <div class="field"><label>תחום העסק</label><input type="text" placeholder="למשל: ריסים, גבות, קוסמטיקה..."></div>
-    <div class="field"><label>טלפון ליצירת קשר</label><input type="tel"></div>
-    <div class="field"><label>אימייל</label><input type="email"></div>
-    <div class="field"><label>כתובת (אם רלוונטי)</label><input type="text"></div>
+    <div class="field"><label>שם העסק</label><input type="text" id="name"></div>
+    <div class="field"><label>תחום העסק</label><input type="text" id="field" placeholder="למשל: ריסים, גבות, קוסמטיקה..."></div>
+    <div class="field"><label>טלפון ליצירת קשר</label><input type="tel" id="phone"></div>
+    <div class="field"><label>אימייל</label><input type="email" id="email"></div>
+    <div class="field"><label>כתובת (אם רלוונטי)</label><input type="text" id="address"></div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>על העסק</div>
-    <div class="field"><label>ספרי בכמה משפטים על העסק שלך</label><textarea></textarea></div>
-    <div class="field"><label>מה מייחד אותך?</label><textarea></textarea></div>
-    <div class="field"><label>למה לקוחות בוחרות דווקא בך?</label><textarea></textarea></div>
+    <div class="field"><label>ספרי בכמה משפטים על העסק שלך</label><textarea id="about"></textarea></div>
+    <div class="field"><label>מה מייחד אותך?</label><textarea id="unique"></textarea></div>
+    <div class="field"><label>למה לקוחות בוחרות דווקא בך?</label><textarea id="why"></textarea></div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>השירותים שלך</div>
-    <div class="field"><label>אילו שירותים תרצי להציג באתר?</label><textarea placeholder="פרטי כל שירות, מחיר אם רלוונטי..."></textarea></div>
+    <div class="field"><label>אילו שירותים תרצי להציג באתר?</label><textarea id="services" placeholder="פרטי כל שירות, מחיר אם רלוונטי..."></textarea></div>
   </div>
 
   <div class="form-section">
@@ -150,80 +173,33 @@ footer a { color: var(--taupe); text-decoration: none; }
     <div class="field">
       <label>האם תרצי להציג מחירים באתר?</label>
       <div class="radio-group">
-        <label class="radio-item"><input type="radio" name="prices"><span>כן</span></label>
-        <label class="radio-item"><input type="radio" name="prices"><span>לא</span></label>
+        <label class="radio-item"><input type="radio" name="prices" value="כן"><span>כן</span></label>
+        <label class="radio-item"><input type="radio" name="prices" value="לא"><span>לא</span></label>
       </div>
-    </div>
-  </div>
-
-  <div class="form-section">
-    <div class="section-title"><span class="dot"></span>תמונות וקבצים</div>
-    <div class="upload-grid">
-
-      <div class="upload-item">
-        <span class="upload-item-label">לוגו</span>
-        <div class="upload-box">
-          <input type="file" accept="image/*,.svg,.pdf" onchange="showPreview(this)">
-          <span class="upload-icon">🖼</span>
-          <div class="upload-text"><strong>לחצי להעלאת לוגו</strong>PNG, JPG, SVG</div>
-        </div>
-        <div class="upload-preview" id="prev-0"></div>
-      </div>
-
-      <div class="upload-item">
-        <span class="upload-item-label">תמונת פרופיל</span>
-        <div class="upload-box">
-          <input type="file" accept="image/*" onchange="showPreview(this)">
-          <span class="upload-icon">👤</span>
-          <div class="upload-text"><strong>לחצי להעלאת תמונה</strong>JPG, PNG</div>
-        </div>
-        <div class="upload-preview" id="prev-1"></div>
-      </div>
-
-      <div class="upload-item">
-        <span class="upload-item-label">תמונות עבודות</span>
-        <div class="upload-box">
-          <input type="file" accept="image/*" multiple onchange="showPreview(this, true)">
-          <span class="upload-icon">📸</span>
-          <div class="upload-text"><strong>לחצי להעלאת תמונות</strong>אפשר לבחור כמה תמונות</div>
-        </div>
-        <div class="upload-preview" id="prev-2"></div>
-      </div>
-
-      <div class="upload-item">
-        <span class="upload-item-label">תמונות העסק (אם יש)</span>
-        <div class="upload-box">
-          <input type="file" accept="image/*" multiple onchange="showPreview(this, true)">
-          <span class="upload-icon">🏢</span>
-          <div class="upload-text"><strong>לחצי להעלאת תמונות</strong>אופציונלי</div>
-        </div>
-        <div class="upload-preview" id="prev-3"></div>
-      </div>
-
     </div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>רשתות חברתיות</div>
-    <div class="field"><label>אינסטגרם</label><input type="text" placeholder="@username"></div>
-    <div class="field"><label>פייסבוק</label><input type="text"></div>
-    <div class="field"><label>טיקטוק</label><input type="text" placeholder="@username"></div>
+    <div class="field"><label>אינסטגרם</label><input type="text" id="ig" placeholder="@username"></div>
+    <div class="field"><label>פייסבוק</label><input type="text" id="fb"></div>
+    <div class="field"><label>טיקטוק</label><input type="text" id="tt" placeholder="@username"></div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>יצירת קשר</div>
-    <div class="field"><label>מספר WhatsApp לחיבור לאתר</label><input type="tel"></div>
+    <div class="field"><label>מספר WhatsApp לחיבור לאתר</label><input type="tel" id="wa"></div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>צבעים וסגנון</div>
-    <div class="field"><label>צבעים שאת אוהבת</label><input type="text"></div>
-    <div class="field"><label>צבעים שאת לא אוהבת</label><input type="text"></div>
+    <div class="field"><label>צבעים שאת אוהבת</label><input type="text" id="colors-yes"></div>
+    <div class="field"><label>צבעים שאת לא אוהבת</label><input type="text" id="colors-no"></div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>השראה</div>
-    <div class="field"><label>אתרים או עמודים שאת אוהבת את הסגנון שלהם</label><textarea placeholder="שלחי קישורים..."></textarea></div>
+    <div class="field"><label>אתרים או עמודים שאת אוהבת את הסגנון שלהם</label><textarea id="inspo" placeholder="שלחי קישורים..."></textarea></div>
   </div>
 
   <div class="form-section">
@@ -231,19 +207,34 @@ footer a { color: var(--taupe); text-decoration: none; }
     <div class="field">
       <label>מה תרצי שיהיה באתר?</label>
       <div class="checkbox-group">
-        <label class="checkbox-item"><input type="checkbox"><span>טופס לידים</span></label>
-        <label class="checkbox-item"><input type="checkbox"><span>קביעת תורים</span></label>
-        <label class="checkbox-item"><input type="checkbox"><span>גלריית עבודות</span></label>
-        <label class="checkbox-item"><input type="checkbox"><span>המלצות לקוחות</span></label>
-        <label class="checkbox-item"><input type="checkbox"><span>שאלות נפוצות</span></label>
-        <label class="checkbox-item"><input type="checkbox"><span>אחר</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="טופס לידים"><span>טופס לידים</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="קביעת תורים"><span>קביעת תורים</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="גלריית עבודות"><span>גלריית עבודות</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="המלצות לקוחות"><span>המלצות לקוחות</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="שאלות נפוצות"><span>שאלות נפוצות</span></label>
+        <label class="checkbox-item"><input type="checkbox" value="אחר"><span>אחר</span></label>
       </div>
     </div>
   </div>
 
   <div class="form-section">
     <div class="section-title"><span class="dot"></span>הערות</div>
-    <div class="field"><label>יש משהו נוסף שחשוב לי לדעת?</label><textarea style="min-height:120px;"></textarea></div>
+    <div class="field"><label>יש משהו נוסף שחשוב לי לדעת?</label><textarea id="notes" style="min-height:120px;"></textarea></div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <button class="btn-submit" onclick="sendForm()">שליחה ←</button>
+    <div class="after-submit">
+      <h3>📎 שלב אחרון — שליחת קבצים בוואטסאפ</h3>
+      <p>לאחר הלחיצה על שליחה, נא לשלוח לניקול בוואטסאפ את הקבצים הבאים:</p>
+      <ul>
+        <li>לוגו של העסק</li>
+        <li>תמונת פרופיל</li>
+        <li>תמונות עבודות</li>
+        <li>תמונות של העסק (אם יש)</li>
+      </ul>
+    </div>
   </div>
 
 </main>
@@ -253,27 +244,49 @@ footer a { color: var(--taupe); text-decoration: none; }
 </footer>
 
 <script>
-let previewIndex = 0;
-document.querySelectorAll('.upload-box input[type="file"]').forEach((input, i) => {
-  input.dataset.index = i;
-});
+function sendForm() {
+  const val = id => document.getElementById(id)?.value || '';
+  const prices = document.querySelector('input[name="prices"]:checked')?.value || 'לא צוין';
+  const extras = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(c => c.value).join(', ') || 'לא צוין';
 
-function showPreview(input, multi) {
-  const idx = input.dataset.index;
-  const container = document.getElementById('prev-' + idx);
-  container.style.display = 'block';
-  container.innerHTML = '';
-  const files = input.files;
-  for (let f of files) {
-    if (f.type.startsWith('image/')) {
-      const img = document.createElement('img');
-      img.src = URL.createObjectURL(f);
-      container.appendChild(img);
-    }
-    const name = document.createElement('span');
-    name.textContent = '✔ ' + f.name;
-    container.appendChild(name);
-  }
+  const msg = `היי ניקול! הנה הפרטים שלי לאתר 🌸
+
+*פרטי העסק*
+שם העסק: ${val('name')}
+תחום: ${val('field')}
+טלפון: ${val('phone')}
+אימייל: ${val('email')}
+כתובת: ${val('address')}
+
+*על העסק*
+${val('about')}
+
+מה מייחד אותי: ${val('unique')}
+למה לקוחות בוחרות בי: ${val('why')}
+
+*שירותים*
+${val('services')}
+
+*מחירים באתר:* ${prices}
+
+*רשתות חברתיות*
+אינסטגרם: ${val('ig')}
+פייסבוק: ${val('fb')}
+טיקטוק: ${val('tt')}
+WhatsApp לאתר: ${val('wa')}
+
+*צבעים שאני אוהבת:* ${val('colors-yes')}
+*צבעים שאני לא אוהבת:* ${val('colors-no')}
+
+*השראה:* ${val('inspo')}
+
+*תוספות רצויות:* ${extras}
+
+*הערות:* ${val('notes')}
+
+📎 שולחת תמונות ולוגו בנפרד!`;
+
+  window.open('https://wa.me/972542266552?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
 </body>
